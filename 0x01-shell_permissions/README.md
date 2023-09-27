@@ -10,12 +10,7 @@
 |`5-execute`| Adds execute permission to the owner of the file hello |
 |`6-multiple_permissions`| Adds execute permission to the owner and the group owner, and read permission to other users, to the file hello |
 |`7-everybody`| Adds execution permission to the owner, the group owner and the other users, to the file hello |
-|`8-James_Bond`| Sets the permission to the file hello as follows:
-
-	* Owner: no permission at all
-	* Group: no permission at all
-	* Other users: all the permissions 
-|
+|`8-James_Bond`| Sets the permission to the file hello as follows: <ul><li> Owner: no permission at all</li><li> Group: no permission at all</li><li> Other users: all the permissions</li></ul> |
 |`9-John_Doe`| Sets the mode of the file hello to this: -rwxr-x-wx|
 |`10-mirror_permissions`| Sets the mode of the file hello the same as olleh’s mode |
 |`11-directories_permissions`| Adds execute permission to all subdirectories of the current directory for the owner, the group owner and all other users |
