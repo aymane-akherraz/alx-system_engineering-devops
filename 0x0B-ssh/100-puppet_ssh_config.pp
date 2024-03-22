@@ -1,4 +1,4 @@
-# Configures ssh to use the private key ~/.ssh/school
+# Configures ssh to use the private key in ~/.ssh/school for authentication
 file { '/etc/ssh/ssh_config':
   ensure  => present,
   mode    => '0600',
