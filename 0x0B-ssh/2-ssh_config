@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Configures ssh to use the private key ~/.ssh/school
+Host 52.86.133.238
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
