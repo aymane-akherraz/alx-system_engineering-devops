@@ -12,7 +12,7 @@ file_line { 'nginx_redirect':
   path   => '/etc/nginx/sites-available/default',
   line   => "\tlocation = /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}",
   match  => 'location = /redirect_me {',
-  after  => 'root /var/www/html;',
+  after  => 'listen 80 default_server;',
 }
 
 service { 'nginx':
