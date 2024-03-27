@@ -10,8 +10,7 @@ file { '/var/www/html/index.html':
 file_line { 'nginx_redirect':
   ensure => 'present',
   path   => '/etc/nginx/sites-available/default',
-  line   => "\tlocation = /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}",
-  match  => 'location = /redirect_me {',
+  line   => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
   after  => 'root /var/www/html;',
 }
 
