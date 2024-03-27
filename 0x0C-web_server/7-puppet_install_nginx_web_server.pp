@@ -4,7 +4,7 @@ package { 'nginx':
 }
 
 file { '/var/www/html/index.html':
-  content => "Hello World!\n",
+  content => "Hello World!",
 }
 
 file_line { 'nginx_redirect':
@@ -12,7 +12,7 @@ file_line { 'nginx_redirect':
   path   => '/etc/nginx/sites-available/default',
   line   => "\tlocation = /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}",
   match  => 'location = /redirect_me {',
-  after  => 'listen 80 default_server;',
+  after  => 'root /var/www/html;',
 }
 
 service { 'nginx':
