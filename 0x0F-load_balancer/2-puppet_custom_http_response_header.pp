@@ -1,6 +1,12 @@
 # Creates a custom HTTP header response
+
+exec { 'update system':
+  command => '/usr/bin/apt-get update',
+}
+
 package { 'nginx':
   ensure => installed,
+  require => Exec['update system']
 }
 
 exec { 'set_custom_header':
