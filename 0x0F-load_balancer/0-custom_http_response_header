@@ -9,5 +9,5 @@ echo "301 Moved Permanently" > /var/www/html/redirect.html
 sudo sed -i '/server_name _;/a\\nerror_page 301 /redirect.html;\n\tlocation = /redirect.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}\n\tlocation /redirect_me {\n\t\treturn 301 https://twitter.com/1337FIL;\n\t}' /etc/nginx/sites-available/default
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 sudo sed -i '/server_name _;/a\\n\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}' /etc/nginx/sites-available/default
-sudo sed -i '/server_name _;/a\\n\tadd_header X-Served-By $hostname;' /etc/nginx/sites-available/default
+sudo sed -i '/server_name _;/a\\n\tadd_header X-Served-By $HOSTNAME;' /etc/nginx/sites-available/default
 sudo service nginx restart
