@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Displays information about subdomains
+
+my_function() {
+	if [ -n "$1" ] && [ -z "$2" ]; then
+		echo "The subdomain www is a $(dig www.$1 | grep -A1 'ANSWER SECTION:' | awk '{print $4}' | tail -n 1) record and points to $(dig www.$1 | grep -A1 'ANSWER SECTION:' | awk '{print $5}' | tail -n 1)"
+		echo "The subdomain lb-01 is a $(dig www.$1 | grep -A1 'ANSWER SECTION:' | awk '{print $4}' | tail -n 1) record and points to $(dig lb-01.$1 | grep -A1 'ANSWER SECTION:' | awk '{print $5}' | tail -n 1)"
+		echo "The subdomain web-01 is a $(dig www.$1 | grep -A1 'ANSWER SECTION:' | awk '{print $4}' | tail -n 1) record and points to $(dig web-01.$1 | grep -A1 'ANSWER SECTION:' | awk '{print $5}' | tail -n 1)"
+		echo "The subdomain web-02 is a $(dig www.$1 | grep -A1 'ANSWER SECTION:' | awk '{print $4}' | tail -n 1) record and points to $(dig web-02.$1 | grep -A1 'ANSWER SECTION:' | awk '{print $5}' | tail -n 1)"
+	fi
+	if [ -n "$1" ] && [ -n "$2" ]; then
+		echo "The subdomain $2 is a $(dig $2.$1 | grep -A1 'ANSWER SECTION:' | awk '{print $4}' | tail -n 1) record and points to $(dig $2.$1 | grep -A1 'ANSWER SECTION:' | awk '{print $5}' | tail -n 1)"
+	fi
+}
+
+my_function "$1" "$2"
+
