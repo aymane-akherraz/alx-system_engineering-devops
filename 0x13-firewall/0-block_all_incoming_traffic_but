@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Configure ufw so that it blocks all incoming traffic, except the following TCP ports: 22, 80, 443
+sudo apt-get update
+sudo apt install ufw
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw disable
+sudo ufw enable
