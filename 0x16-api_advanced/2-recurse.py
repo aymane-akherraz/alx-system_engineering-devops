@@ -10,7 +10,7 @@ def recurse(subreddit, hot_list=[], after="null"):
 
     r = requests.get('https://www.reddit.com/r/{}/hot.json?limit=100&after={}'
                      .format(subreddit, after), allow_redirects=False)
-    if r.status_code == 404:
+    if r.status_code != 200:
         return None
     if after is not None:
         after = r.json()['data']['after']
