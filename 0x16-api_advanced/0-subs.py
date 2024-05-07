@@ -14,9 +14,7 @@ def number_of_subscribers(subreddit):
                      headers={"User-Agent": "My-Agent"},
                      allow_redirects=False)
 
-    if r.status_code == 200:
-        try:
-            return subscribers_count.json()["data"]["subscribers"]
-        except Exception:
-            return 0
-    return 0
+    try:
+        return r.json()["data"]["subscribers"]
+    except Exception:
+        return 0
