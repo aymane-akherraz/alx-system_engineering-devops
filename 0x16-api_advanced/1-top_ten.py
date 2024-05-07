@@ -8,10 +8,11 @@ def top_ten(subreddit):
         for a given subreddit
     """
 
-    r = requests.get('https://www.reddit.com/r/{}/hot.json?limit=9'
+    r = requests.get('https://www.reddit.com/r/{}/hot.json?limit=10'
                      .format(subreddit), allow_redirects=False)
-    if r.status_code != 200:
+    if r.status_code == 404:
         print(None)
         return
 
-    [print(post['data']['title']) for post in r.json()['data']['children']]
+    for post in r.json()['data']['children']:
+        print(post['data']['title'])
