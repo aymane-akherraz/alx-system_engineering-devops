@@ -9,14 +9,14 @@ def top_ten(subreddit):
     """
 
     r = requests.get('https://www.reddit.com/r/{}/hot.json?limit=10'
-                     .format(subreddit), allow_redirects=False)
-    if r.status_code == 404:
-        print(None)
+                     .format(subreddit),
+                     headers={"User-Agent": "My-User-Agent"},
+                     allow_redirects=False)
 
-    else:
-        posts = r.json().get('data')
-        for post in posts.get('children')
-            print(post.get('data').get('title'))
-        
+    if r.status_code != 200:
+        print('None')
+        return
 
-
+    posts = r.json().get('data')
+    for post in posts.get('children'):
+        print(post.get('data').get('title'))
