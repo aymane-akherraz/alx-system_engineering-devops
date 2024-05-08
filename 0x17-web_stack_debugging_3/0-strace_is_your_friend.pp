@@ -1,4 +1,6 @@
 # Fix wordpress issue using puppet
-file { '/var/www/html/wp-settings.php':
-  ensure  => file,
-  content => inline_template("<%= File.read('/var/www/html/wp-settings.php').gsub(\"require_once( ABSPATH . WPINC . '/class-wp-locale.phpp' );\", \"require_once( ABSPATH . WPINC . '/class-wp-locale.php' );\") %>"),
+
+exec { 'fix-wp-err':
+  command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php',
+  path    => ['/bin', '/usr/bin'],
+}
