@@ -10,10 +10,10 @@ def top_ten(subreddit):
 
     r = requests.get('https://www.reddit.com/r/{}/hot.json?limit=10'
                      .format(subreddit),
-                     headers={"User-Agent": "My-User-Agent"},
+                     headers={"User-Agent": "My-Agent"},
                      allow_redirects=False)
 
-    if r.status_code != 200:
+    if r.status_code == 404:
         print('None')
         return
 
