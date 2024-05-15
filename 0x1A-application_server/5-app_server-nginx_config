@@ -1,0 +1,48 @@
+
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        server_name localhost 52.86.133.238;
+
+	
+		# Serve / route to point to the Gunicorn instance
+		location / {
+				include proxy_params;
+				proxy_pass http://127.0.0.1:5003/2-hbnb;
+        }
+		location /static {
+			   	 proxy_pass http://127.0.0.1:5003;
+	    }
+		# Serve /api/ route on AirBnB_clone_v3
+		location /api/ {
+                include proxy_params;
+                proxy_pass http://127.0.0.1:5002;
+        }
+		# Serve /airbnb-dynamic/number_odd_or_even/ route on AirBnB_clone_v2
+		location /airbnb-dynamic/number_odd_or_even/ {
+                rewrite ^/airbnb-dynamic(.*) $1 break;
+                include proxy_params;
+                proxy_pass http://127.0.0.1:5001;
+        }
+		# Serve /airbnb-onepage/ route on AirBnB_clone_v2
+        location = /airbnb-onepage/ {
+                include proxy_params;
+                proxy_pass http://127.0.0.1:5000;
+        }
+
+        add_header X-Served-By 520327-web-01;
+        error_page 404 /404.html;
+        location = /404.html {
+                root /var/www/html;
+                internal;
+        }
+
+        error_page 301 /redirect.html;
+        location = /redirect.html {
+                root /var/www/html;
+                internal;
+        }
+        location /redirect_me {
+                return 301 https://twitter.com/1337FIL;
+        }
+}
